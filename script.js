@@ -38,9 +38,15 @@ products.push(cherry, orange, strawberry);
 let cart = [];
 
 
+// function getting product based on the productId
+function getProductByIdFromList(productId, my_list) {
+  return my_list.find((product) => product.productId === productId);
+};
+
+
 function addProductToCart(productId) {
   // getting product based on the productId
-  let product = products.find((product) => product.productId === productId);
+  let product = getProductByIdFromList(productId, products);
   // increases the product quantity
   product.quantity += 1;
   // if product is not in cart, it adding it
@@ -52,7 +58,7 @@ function addProductToCart(productId) {
 
 function increaseQuantity(productId) {
   // getting product based on the productId
-  let product = products.find((product) => product.productId === productId);
+  let product = getProductByIdFromList(productId, products);
   // increase the product quantity
   product.quantity += 1;
 };
@@ -60,7 +66,7 @@ function increaseQuantity(productId) {
 
 function decreaseQuantity(productId) {
   // getting product based on the productId
-  let product = products.find((product) => product.productId === productId);
+  let product = getProductByIdFromList(productId, products);
   // decreases the product quantity
   product.quantity -= 1;
   // if there is 0 product in cart, it is removing the product from cart
@@ -72,7 +78,7 @@ function decreaseQuantity(productId) {
 
 function removeProductFromCart(productId) {
   // getting product based on the productId
-  let product = products.find((product) => product.productId === productId);
+  let product = getProductByIdFromList(productId, products);
   // setting quantity to 0
   product.quantity = 0;
   // removing product 
@@ -91,7 +97,7 @@ function cartTotal() {
   };
   // return the total
   return total;
-};
+  };
 
 
 function emptyCart() {
@@ -100,7 +106,6 @@ function emptyCart() {
     cart[i].quantity=0;
   };
   // removing all products from cart
-  // cart.splice(0, cart.length)
   removeIndex = cart.indexOf(product);
   cart.splice(removeIndex, cart.length);
 };
