@@ -37,6 +37,9 @@ products.push(cherry, orange, strawberry);
 // empty array named cart
 let cart = [];
 
+// setting amount that is paid to 0
+let totalPaid = 0;
+
 
 // function getting product based on the productId
 function getProductByIdFromList(productId, my_list) {
@@ -88,13 +91,9 @@ function removeProductFromCart(productId) {
 
 
 function cartTotal() {
-  // set total as 0
-  let total = 0;
-  // for each product in cart
-  for (i = 0; i < cart.length; i++) {
-    // total += quantity * price
-    total += cart[i].quantity * cart[i].price;
-  };
+  let total = cart.reduce(function(previousValue, currentValue) {
+    return previousValue + currentValue.quantity * currentValue.price;
+  }, 0);
   // return the total
   return total;
   };
@@ -112,8 +111,6 @@ function emptyCart() {
 
 
 function pay(amount) {
-  // setting amount that is paid to 0
-  let totalPaid = 0;
   // setting amount to what we have already paid
   totalPaid += amount;
   // giving information if we need to pay more, or we will get back money
